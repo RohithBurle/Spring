@@ -230,3 +230,180 @@
 2024-01-04T12:40:48.984+05:30  INFO 33028 --- [http-nio-1234-exec-2] c.e.event.contoller.EventController      : Posting
 2024-01-04T12:40:48.984+05:30  INFO 33028 --- [http-nio-1234-exec-2] c.e.event.contoller.EventController      : recieved req from post mapping
 2024-01-04T12:40:49.479+05:30 ERROR 33028 --- [http-nio-1234-exec-2] c.e.event.contoller.EventController      : exceptionEvent already Exists
+2024-01-04T12:55:04.789+05:30  INFO 33028 --- [http-nio-1234-exec-3] c.e.event.contoller.EventController      : Posting
+2024-01-04T12:55:04.789+05:30  INFO 33028 --- [http-nio-1234-exec-3] c.e.event.contoller.EventController      : recieved req from post mapping
+2024-01-04T12:55:04.792+05:30 ERROR 33028 --- [http-nio-1234-exec-3] c.e.event.contoller.EventController      : exceptionEvent already Exists
+2024-01-04T12:55:07.981+05:30  INFO 33028 --- [RMI TCP Connection(24)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-01-04T12:55:08.013+05:30  INFO 33028 --- [RMI TCP Connection(24)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T12:55:08.015+05:30  INFO 33028 --- [RMI TCP Connection(24)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-04T12:55:08.384+05:30  INFO 33028 --- [RMI TCP Connection(24)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-04T12:55:13.666+05:30  INFO 72616 --- [main] com.example.event.EventApplication       : Starting EventApplication using Java 17.0.9 with PID 72616 (C:\Users\rohith_burle\Desktop\Spring\event\event\target\classes started by rohith_burle in C:\Users\rohith_burle\Desktop\Spring\event\event)
+2024-01-04T12:55:13.669+05:30  INFO 72616 --- [main] com.example.event.EventApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-01-04T12:55:14.472+05:30  INFO 72616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-04T12:55:14.550+05:30  INFO 72616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 1 JPA repository interface.
+2024-01-04T12:55:15.121+05:30  INFO 72616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1234 (http)
+2024-01-04T12:55:15.135+05:30  INFO 72616 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-04T12:55:15.136+05:30  INFO 72616 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-04T12:55:15.228+05:30  INFO 72616 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-04T12:55:15.229+05:30  INFO 72616 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1512 ms
+2024-01-04T12:55:15.263+05:30  INFO 72616 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-04T12:55:15.543+05:30  INFO 72616 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:file:C:\Users\rohith_burle\events user=DATABASE
+2024-01-04T12:55:15.545+05:30  INFO 72616 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-04T12:55:15.557+05:30  INFO 72616 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-rohith'. Database available at 'jdbc:h2:file:C:\Users\rohith_burle\events'
+2024-01-04T12:55:15.697+05:30  INFO 72616 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-04T12:55:15.795+05:30  INFO 72616 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-04T12:55:15.848+05:30  INFO 72616 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-04T12:55:16.140+05:30  INFO 72616 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-04T12:55:16.195+05:30  WARN 72616 --- [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-04T12:55:17.149+05:30  INFO 72616 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-04T12:55:17.210+05:30  INFO 72616 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T12:55:17.616+05:30  WARN 72616 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-04T12:55:18.116+05:30  INFO 72616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1234 (http) with context path ''
+2024-01-04T12:55:18.132+05:30  INFO 72616 --- [main] com.example.event.EventApplication       : Started EventApplication in 4.957 seconds (process running for 5.893)
+2024-01-04T12:55:27.201+05:30  INFO 72616 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-04T12:55:27.201+05:30  INFO 72616 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-04T12:55:27.203+05:30  INFO 72616 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-01-04T12:55:27.340+05:30  INFO 72616 --- [http-nio-1234-exec-1] c.e.event.contoller.EventController      : Posting
+2024-01-04T12:55:27.340+05:30  INFO 72616 --- [http-nio-1234-exec-1] c.e.event.contoller.EventController      : recieved req from post mapping
+2024-01-04T12:55:27.819+05:30 ERROR 72616 --- [http-nio-1234-exec-1] c.e.event.contoller.EventController      : Returning the data
+2024-01-04T12:57:08.886+05:30  INFO 72616 --- [http-nio-1234-exec-4] c.e.event.contoller.EventController      : Updating if only present
+2024-01-04T12:57:08.887+05:30  INFO 72616 --- [http-nio-1234-exec-4] c.e.event.contoller.EventController      : recieved req from put mapping
+2024-01-04T12:57:15.664+05:30  INFO 72616 --- [http-nio-1234-exec-6] c.e.event.contoller.EventController      : Retrive all events
+2024-01-04T12:57:15.665+05:30  INFO 72616 --- [http-nio-1234-exec-6] c.e.event.contoller.EventController      : recieved request for Get method 
+2024-01-04T12:57:38.262+05:30  INFO 72616 --- [http-nio-1234-exec-7] c.e.event.contoller.EventController      : Updating if only present
+2024-01-04T12:57:38.262+05:30  INFO 72616 --- [http-nio-1234-exec-7] c.e.event.contoller.EventController      : recieved req from put mapping
+2024-01-04T12:57:38.263+05:30 ERROR 72616 --- [http-nio-1234-exec-7] c.e.event.contoller.EventController      : raising an EventNotExists Exception
+2024-01-04T12:57:38.264+05:30 ERROR 72616 --- [http-nio-1234-exec-7] c.e.event.contoller.EventController      : EventNotExistsException: the event is not present so i cant update the data
+2024-01-04T14:04:53.293+05:30  INFO 72616 --- [http-nio-1234-exec-9] c.e.event.contoller.EventController      : Posting
+2024-01-04T14:04:53.294+05:30  INFO 72616 --- [http-nio-1234-exec-9] c.e.event.contoller.EventController      : recieved req from post mapping
+2024-01-04T14:04:53.294+05:30 ERROR 72616 --- [http-nio-1234-exec-9] c.e.event.contoller.EventController      : raising an NotNullException
+2024-01-04T14:04:53.295+05:30 ERROR 72616 --- [http-nio-1234-exec-9] c.e.event.contoller.EventController      : exceptionFailure because event Id is null
+2024-01-04T14:05:05.147+05:30  INFO 72616 --- [http-nio-1234-exec-1] c.e.event.contoller.EventController      : Posting
+2024-01-04T14:05:05.148+05:30  INFO 72616 --- [http-nio-1234-exec-1] c.e.event.contoller.EventController      : recieved req from post mapping
+2024-01-04T14:05:05.148+05:30 ERROR 72616 --- [http-nio-1234-exec-1] c.e.event.contoller.EventController      : raising NonEmptyException
+2024-01-04T14:05:05.148+05:30 ERROR 72616 --- [http-nio-1234-exec-1] c.e.event.contoller.EventController      : exceptionFailure because event id is empty
+2024-01-04T14:33:03.706+05:30  INFO 72616 --- [http-nio-1234-exec-5] c.e.event.contoller.EventController      : Retrive all events
+2024-01-04T14:33:03.706+05:30  INFO 72616 --- [http-nio-1234-exec-5] c.e.event.contoller.EventController      : recieved request for Get method 
+2024-01-04T14:33:12.185+05:30  INFO 72616 --- [http-nio-1234-exec-4] c.e.event.contoller.EventController      : Deleting the specifc event
+2024-01-04T14:33:12.189+05:30  INFO 72616 --- [http-nio-1234-exec-4] c.e.event.contoller.EventController      : Request from delete mapping
+2024-01-04T14:33:20.808+05:30  INFO 72616 --- [http-nio-1234-exec-6] c.e.event.contoller.EventController      : Deleting the specifc event
+2024-01-04T14:33:20.812+05:30 ERROR 72616 --- [http-nio-1234-exec-6] c.e.event.contoller.EventController      : raising an Exception
+2024-01-04T14:33:20.813+05:30 ERROR 72616 --- [http-nio-1234-exec-6] c.e.event.contoller.EventController      : Cant delete the eventThe event with ID 5000 is not present
+2024-01-04T14:33:31.348+05:30  INFO 72616 --- [http-nio-1234-exec-7] c.e.event.contoller.EventController      : Deleting the specifc event
+2024-01-04T14:33:31.349+05:30  INFO 72616 --- [http-nio-1234-exec-7] c.e.event.contoller.EventController      : Request from delete mapping
+2024-01-04T14:34:16.423+05:30  INFO 72616 --- [RMI TCP Connection(105)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-01-04T14:34:16.524+05:30  INFO 72616 --- [RMI TCP Connection(105)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T14:34:16.531+05:30  INFO 72616 --- [RMI TCP Connection(105)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-04T14:34:16.760+05:30  INFO 72616 --- [RMI TCP Connection(105)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-04T14:34:21.577+05:30  INFO 52264 --- [main] com.example.event.EventApplication       : Starting EventApplication using Java 17.0.9 with PID 52264 (C:\Users\rohith_burle\Desktop\Spring\event\event\target\classes started by rohith_burle in C:\Users\rohith_burle\Desktop\Spring\event\event)
+2024-01-04T14:34:21.580+05:30  INFO 52264 --- [main] com.example.event.EventApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-01-04T14:34:22.374+05:30  INFO 52264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-04T14:34:22.464+05:30  INFO 52264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 77 ms. Found 1 JPA repository interface.
+2024-01-04T14:34:23.041+05:30  INFO 52264 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1234 (http)
+2024-01-04T14:34:23.068+05:30  INFO 52264 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-04T14:34:23.069+05:30  INFO 52264 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-04T14:34:23.164+05:30  INFO 52264 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-04T14:34:23.165+05:30  INFO 52264 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1538 ms
+2024-01-04T14:34:23.201+05:30  INFO 52264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-04T14:34:23.498+05:30  INFO 52264 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:file:C:\Users\rohith_burle\events user=DATABASE
+2024-01-04T14:34:23.501+05:30  INFO 52264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-04T14:34:23.516+05:30  INFO 52264 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-rohith'. Database available at 'jdbc:h2:file:C:\Users\rohith_burle\events'
+2024-01-04T14:34:23.936+05:30  INFO 52264 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-04T14:34:24.008+05:30  INFO 52264 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-04T14:34:24.056+05:30  INFO 52264 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-04T14:34:24.339+05:30  INFO 52264 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-04T14:34:24.399+05:30  WARN 52264 --- [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-04T14:34:25.362+05:30  INFO 52264 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-04T14:34:25.426+05:30  INFO 52264 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T14:34:25.894+05:30  WARN 52264 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-04T14:34:26.422+05:30  INFO 52264 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1234 (http) with context path ''
+2024-01-04T14:34:26.434+05:30  INFO 52264 --- [main] com.example.event.EventApplication       : Started EventApplication in 5.351 seconds (process running for 6.304)
+2024-01-04T14:34:34.103+05:30  INFO 52264 --- [http-nio-1234-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-04T14:34:34.103+05:30  INFO 52264 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-04T14:34:34.105+05:30  INFO 52264 --- [http-nio-1234-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-01-04T14:34:34.160+05:30  INFO 52264 --- [http-nio-1234-exec-1] c.e.event.contoller.EventController      : specific event
+2024-01-04T14:34:34.639+05:30 ERROR 52264 --- [http-nio-1234-exec-1] c.e.event.contoller.EventController      : exceptionevent id is no string not present
+2024-01-04T14:34:47.231+05:30  INFO 52264 --- [http-nio-1234-exec-4] c.e.event.contoller.EventController      : Retrive all events
+2024-01-04T14:34:47.231+05:30  INFO 52264 --- [http-nio-1234-exec-4] c.e.event.contoller.EventController      : recieved request for Get method 
+2024-01-04T14:35:26.201+05:30  INFO 52264 --- [http-nio-1234-exec-5] c.e.event.contoller.EventController      : Deleting the specifc event
+2024-01-04T14:35:26.204+05:30  INFO 52264 --- [http-nio-1234-exec-5] c.e.event.contoller.EventController      : Request from delete mapping
+2024-01-04T14:38:32.634+05:30  INFO 52264 --- [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-01-04T14:38:32.661+05:30  INFO 52264 --- [RMI TCP Connection(11)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T14:38:32.663+05:30  INFO 52264 --- [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-04T14:38:33.090+05:30  INFO 52264 --- [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-04T14:39:05.555+05:30  INFO 84668 --- [restartedMain] com.example.event.EventApplication       : Starting EventApplication using Java 17.0.9 with PID 84668 (C:\Users\rohith_burle\Desktop\Spring\event\event\target\classes started by rohith_burle in C:\Users\rohith_burle\Desktop\Spring\event\event)
+2024-01-04T14:39:05.556+05:30  INFO 84668 --- [restartedMain] com.example.event.EventApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-01-04T14:39:05.974+05:30  INFO 84668 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-04T14:39:05.993+05:30  INFO 84668 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+2024-01-04T14:39:06.147+05:30  INFO 84668 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1234 (http)
+2024-01-04T14:39:06.148+05:30  INFO 84668 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-04T14:39:06.148+05:30  INFO 84668 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-04T14:39:06.187+05:30  INFO 84668 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-04T14:39:06.188+05:30  INFO 84668 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 628 ms
+2024-01-04T14:39:06.205+05:30  INFO 84668 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-01-04T14:39:06.277+05:30  INFO 84668 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:file:C:\Users\rohith_burle\events user=DATABASE
+2024-01-04T14:39:06.278+05:30  INFO 84668 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-01-04T14:39:06.278+05:30  INFO 84668 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-rohith'. Database available at 'jdbc:h2:file:C:\Users\rohith_burle\events'
+2024-01-04T14:39:06.303+05:30  INFO 84668 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-04T14:39:06.308+05:30  INFO 84668 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-04T14:39:06.314+05:30  INFO 84668 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-04T14:39:06.318+05:30  WARN 84668 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-04T14:39:06.354+05:30  INFO 84668 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-04T14:39:06.397+05:30  INFO 84668 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T14:39:06.504+05:30  WARN 84668 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-04T14:39:06.695+05:30  INFO 84668 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-04T14:39:06.721+05:30  INFO 84668 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1234 (http) with context path ''
+2024-01-04T14:39:06.732+05:30  INFO 84668 --- [restartedMain] com.example.event.EventApplication       : Started EventApplication in 1.253 seconds (process running for 18.115)
+2024-01-04T14:39:06.735+05:30  INFO 84668 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-01-04T16:14:37.327+05:30  INFO 84668 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-04T16:14:37.334+05:30  INFO 84668 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-04T16:14:37.360+05:30  INFO 84668 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 26 ms
+2024-01-04T16:14:37.444+05:30  INFO 84668 --- [http-nio-1234-exec-2] c.e.event.contoller.EventController      : Retrive all events
+2024-01-04T16:14:37.444+05:30  INFO 84668 --- [http-nio-1234-exec-2] c.e.event.contoller.EventController      : recieved request for Get method 
+2024-01-04T16:14:49.198+05:30  INFO 84668 --- [http-nio-1234-exec-3] c.e.event.contoller.EventController      : specific event
+2024-01-04T16:14:53.506+05:30  INFO 84668 --- [http-nio-1234-exec-4] c.e.event.contoller.EventController      : specific event
+2024-01-04T16:14:53.509+05:30 ERROR 84668 --- [http-nio-1234-exec-4] c.e.event.contoller.EventController      : exceptionevent id is no 66 not present
+2024-01-04T16:15:13.993+05:30  INFO 84668 --- [http-nio-1234-exec-6] c.e.event.contoller.EventController      : Posting
+2024-01-04T16:15:13.994+05:30  INFO 84668 --- [http-nio-1234-exec-6] c.e.event.contoller.EventController      : recieved req from post mapping
+2024-01-04T16:15:34.924+05:30  INFO 84668 --- [http-nio-1234-exec-7] c.e.event.contoller.EventController      : Updating if only present
+2024-01-04T16:15:34.924+05:30  INFO 84668 --- [http-nio-1234-exec-7] c.e.event.contoller.EventController      : recieved req from put mapping
+2024-01-04T16:15:39.936+05:30  INFO 84668 --- [http-nio-1234-exec-8] c.e.event.contoller.EventController      : Retrive all events
+2024-01-04T16:15:39.937+05:30  INFO 84668 --- [http-nio-1234-exec-8] c.e.event.contoller.EventController      : recieved request for Get method 
+2024-01-04T16:15:56.103+05:30  INFO 84668 --- [http-nio-1234-exec-9] c.e.event.contoller.EventController      : Updating if only present
+2024-01-04T16:15:56.103+05:30  INFO 84668 --- [http-nio-1234-exec-9] c.e.event.contoller.EventController      : recieved req from put mapping
+2024-01-04T16:15:56.105+05:30 ERROR 84668 --- [http-nio-1234-exec-9] c.e.event.contoller.EventController      : raising an EventNotExists Exception
+2024-01-04T16:15:56.105+05:30 ERROR 84668 --- [http-nio-1234-exec-9] c.e.event.contoller.EventController      : EventNotExistsException: the event is not present so i cant update the data
+2024-01-04T17:19:22.593+05:30  INFO 84668 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-01-04T17:19:22.619+05:30  INFO 84668 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T17:19:22.621+05:30  INFO 84668 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-01-04T17:19:22.852+05:30  INFO 84668 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2024-01-04T17:19:22.986+05:30  INFO 84668 --- [restartedMain] com.example.event.EventApplication       : Starting EventApplication using Java 17.0.9 with PID 84668 (C:\Users\rohith_burle\Desktop\Spring\event\event\target\classes started by rohith_burle in C:\Users\rohith_burle\Desktop\Spring\event\event)
+2024-01-04T17:19:22.987+05:30  INFO 84668 --- [restartedMain] com.example.event.EventApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-01-04T17:19:23.248+05:30  INFO 84668 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-04T17:19:23.260+05:30  INFO 84668 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 1 JPA repository interface.
+2024-01-04T17:19:23.372+05:30  INFO 84668 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1234 (http)
+2024-01-04T17:19:23.373+05:30  INFO 84668 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-04T17:19:23.373+05:30  INFO 84668 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-04T17:19:23.408+05:30  INFO 84668 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-04T17:19:23.408+05:30  INFO 84668 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 419 ms
+2024-01-04T17:19:23.428+05:30  INFO 84668 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2024-01-04T17:19:23.453+05:30  INFO 84668 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection conn70: url=jdbc:h2:file:C:\Users\rohith_burle\events user=DATABASE
+2024-01-04T17:19:23.454+05:30  INFO 84668 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2024-01-04T17:19:23.454+05:30  INFO 84668 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-rohith'. Database available at 'jdbc:h2:file:C:\Users\rohith_burle\events'
+2024-01-04T17:19:23.490+05:30  INFO 84668 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-04T17:19:23.495+05:30  INFO 84668 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-04T17:19:23.500+05:30  INFO 84668 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-04T17:19:23.502+05:30  WARN 84668 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-04T17:19:23.536+05:30  INFO 84668 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-04T17:19:23.540+05:30  INFO 84668 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T17:19:23.664+05:30  WARN 84668 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-04T17:19:23.858+05:30  INFO 84668 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-04T17:19:23.884+05:30  INFO 84668 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1234 (http) with context path ''
+2024-01-04T17:19:23.890+05:30  INFO 84668 --- [restartedMain] com.example.event.EventApplication       : Started EventApplication in 0.936 seconds (process running for 9635.199)
+2024-01-04T17:19:23.892+05:30  INFO 84668 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-01-04T17:24:00.002+05:30  INFO 84668 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-01-04T17:24:00.027+05:30  INFO 84668 --- [Thread-12] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T17:24:00.028+05:30  INFO 84668 --- [Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2024-01-04T17:24:00.314+05:30  INFO 84668 --- [Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2024-01-04T17:24:00.395+05:30  INFO 84668 --- [restartedMain] com.example.event.EventApplication       : Starting EventApplication using Java 17.0.9 with PID 84668 (C:\Users\rohith_burle\Desktop\Spring\event\event\target\classes started by rohith_burle in C:\Users\rohith_burle\Desktop\Spring\event\event)
+2024-01-04T17:24:00.395+05:30  INFO 84668 --- [restartedMain] com.example.event.EventApplication       : No active profile set, falling back to 1 default profile: "default"

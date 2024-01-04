@@ -60,7 +60,7 @@ public class EventController {
 		} catch (Exception e) {
 			if(e.getMessage().endsWith("Exists"))
 			{
-				logger.error("Returning the data");
+				logger.error("Returning the data that is already present");
 				EventModel event = eventservice.getEvent(eventmodel.getEventId());
 				return new ResponseEntity<>(event, HttpStatus.OK);
 			}
@@ -85,18 +85,13 @@ public class EventController {
 	public ResponseEntity<String> delEvent(@PathVariable("eventId") String eventId) {
 		try {
 		logger.info("Deleting the specifc event");
-		String delevent = (String) eventservice.delEvent(eventId);
-		return new ResponseEntity<>(delevent, HttpStatus.OK);
+		eventservice.delEvent(eventId);
+		return new ResponseEntity<>("Deleted Happily", HttpStatus.OK);
 		} catch(Exception e)
 		{
 			logger.error("Cant delete the event" + e.getMessage());
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
-	}
 	
-	@RequestMapping(path = "**")
-    public ResponseEntity<String> handleInvalidEndpoint() {
-        logger.error("Invalid endpoint requested");
-        return new ResponseEntity<>("Invalid endpoint requested", HttpStatus.NOT_FOUND);
 }
 }

@@ -17,6 +17,9 @@ import com.example.event.model.EventModel;
 import com.example.event.repository.EventRepository;
 import com.example.event.service.EventService;
 
+//import lombok.extern.slf4j.Slf4j;
+
+// @Slf4j //we have use log.
 @Service
 public class EventServiceImpl implements EventService {
 
@@ -28,7 +31,6 @@ public class EventServiceImpl implements EventService {
 	public EventServiceImpl(EventRepository eventrepository) {
 		this.eventrepository = eventrepository;
 	}
-	
 	
 	@Override
 	public String createEvent(EventModel eventmodel) {
@@ -67,8 +69,6 @@ public class EventServiceImpl implements EventService {
 			throw new EventNotExistsException("the event is not present so i cant update the data");
 	}}
 	
-	
-
 	@Override 
 	public String delEvent(String eventId) {
 	    if (eventrepository.existsById(eventId)) {
