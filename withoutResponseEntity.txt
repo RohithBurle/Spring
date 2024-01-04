@@ -1,0 +1,41 @@
+//	//specific event
+//	@GetMapping("{eventId}") //event id in this line is given by user
+//	public EventModel specificEvent(@PathVariable("eventId") String eventId) //to match above and below eventID
+//	{
+//		return eventservice.getEvent(eventId);
+//	}
+//	//all events
+//	@GetMapping() 
+//	public  List<EventModel> allEvents()
+//	{
+//		return eventservice.getAllEvents();
+//	}
+//	
+//	//create
+//	@PostMapping
+//	public String createEvent(@RequestBody EventModel eventmodel)
+//	{
+//		eventservice.createEvent(eventmodel);
+//		return "done sucessfully";
+//	}
+//	
+//	//update
+//	@PutMapping()
+//	public String updateEvent(@RequestBody EventModel eventmodel)
+//	{
+//		try {
+//			eventservice.Done(eventmodel);
+//		    return "updated sucessfully";
+//		} catch (EventNotExistsException e) {
+//			return e.getMessage();
+//		}
+//	}
+//	
+//	//deleted by id
+//	@DeleteMapping("{eventId}")
+//	public String deleteEvent(@PathVariable("eventId") String eventId)
+//	{
+//		eventservice.delEvent(eventId);
+//		return "deleted successfully";
+//	}
+//}

@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,13 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.example.event.model.EventModel;
-import com.example.event.repository.EventRepository;
 import com.example.event.service.EventService;
 
-@RestController
+@Controller
 @RequestMapping("/api")
 public class EventController {
 
@@ -96,12 +94,18 @@ public class EventController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<String> createEvent(@RequestBody EventModel eventmodel) {
+	public ResponseEntity<?> createEvent(@RequestBody EventModel eventmodel) {
 		try {
 			logger.info("Posting");
 			String status = eventservice.createEvent(eventmodel); // object comes here
 			return new ResponseEntity<>(status, HttpStatus.CREATED);
 		} catch (Exception e) {
+//			if(e.getMessage().endsWith("Exists"))
+//			{
+//				logger.error("Returning the data");
+//				EventModel event = eventservice.getEvent(eventmodel.getEventId());
+//				return new ResponseEntity<>(event, HttpStatus.OK);
+//			}
 			logger.error("exception" + e.getMessage());
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
@@ -131,4 +135,10 @@ public class EventController {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@RequestMapping(path = "**")
+    public ResponseEntity<String> handleInvalidEndpoint() {
+        logger.error("Invalid endpoint requested");
+        return new ResponseEntity<>("Invalid endpoint requested", HttpStatus.NOT_FOUND);
+}
 }

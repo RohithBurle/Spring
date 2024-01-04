@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.example.event.contoller.EventController;
+import com.example.event.exceptions.EventAlreadyExistsException;
 import com.example.event.exceptions.EventNotExistsException;
 import com.example.event.exceptions.NotEmptyException;
 import com.example.event.exceptions.NotNullException;
@@ -38,6 +39,10 @@ public class EventServiceImpl implements EventService {
 				logger.error("raising NonEmptyException");
 				throw new NotEmptyException("Failure because event id is empty");
 			}
+			if(eventrepository.existsById(eventmodel.getEventId()))
+					{
+				throw new EventAlreadyExistsException("Event already Exists");
+					}
 			else {
 			eventrepository.save(eventmodel);
 			return "Success";
