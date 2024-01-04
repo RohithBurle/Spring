@@ -201,3 +201,32 @@
 2024-01-04T12:40:33.922+05:30  INFO 36228 --- [RMI TCP Connection(7)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-01-04T12:40:33.924+05:30  INFO 36228 --- [RMI TCP Connection(7)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-01-04T12:40:33.978+05:30  INFO 36228 --- [RMI TCP Connection(7)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-04T12:40:40.483+05:30  INFO 33028 --- [main] com.example.event.EventApplication       : Starting EventApplication using Java 17.0.9 with PID 33028 (C:\Users\rohith_burle\Desktop\Spring\event\event\target\classes started by rohith_burle in C:\Users\rohith_burle\Desktop\Spring\event\event)
+2024-01-04T12:40:40.487+05:30  INFO 33028 --- [main] com.example.event.EventApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-01-04T12:40:41.254+05:30  INFO 33028 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-04T12:40:41.319+05:30  INFO 33028 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 1 JPA repository interface.
+2024-01-04T12:40:41.814+05:30  INFO 33028 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 1234 (http)
+2024-01-04T12:40:41.828+05:30  INFO 33028 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-04T12:40:41.828+05:30  INFO 33028 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-04T12:40:41.912+05:30  INFO 33028 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-04T12:40:41.913+05:30  INFO 33028 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1358 ms
+2024-01-04T12:40:41.950+05:30  INFO 33028 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-04T12:40:42.234+05:30  INFO 33028 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:file:C:\Users\rohith_burle\events user=DATABASE
+2024-01-04T12:40:42.236+05:30  INFO 33028 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-04T12:40:42.250+05:30  INFO 33028 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-rohith'. Database available at 'jdbc:h2:file:C:\Users\rohith_burle\events'
+2024-01-04T12:40:42.400+05:30  INFO 33028 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-04T12:40:42.485+05:30  INFO 33028 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-04T12:40:42.529+05:30  INFO 33028 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-04T12:40:42.816+05:30  INFO 33028 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-04T12:40:42.876+05:30  WARN 33028 --- [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-04T12:40:43.849+05:30  INFO 33028 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-04T12:40:43.919+05:30  INFO 33028 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-04T12:40:44.394+05:30  WARN 33028 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-04T12:40:44.857+05:30  INFO 33028 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 1234 (http) with context path ''
+2024-01-04T12:40:44.868+05:30  INFO 33028 --- [main] com.example.event.EventApplication       : Started EventApplication in 4.882 seconds (process running for 5.826)
+2024-01-04T12:40:48.858+05:30  INFO 33028 --- [http-nio-1234-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-04T12:40:48.859+05:30  INFO 33028 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-04T12:40:48.860+05:30  INFO 33028 --- [http-nio-1234-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-01-04T12:40:48.984+05:30  INFO 33028 --- [http-nio-1234-exec-2] c.e.event.contoller.EventController      : Posting
+2024-01-04T12:40:48.984+05:30  INFO 33028 --- [http-nio-1234-exec-2] c.e.event.contoller.EventController      : recieved req from post mapping
+2024-01-04T12:40:49.479+05:30 ERROR 33028 --- [http-nio-1234-exec-2] c.e.event.contoller.EventController      : exceptionEvent already Exists

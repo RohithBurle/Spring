@@ -30,48 +30,6 @@ public class EventController {
 		this.eventservice = eventservice;
 	}
 
-//	//specific event
-//	@GetMapping("{eventId}") //event id in this line is given by user
-//	public EventModel specificEvent(@PathVariable("eventId") String eventId) //to match above and below eventID
-//	{
-//		return eventservice.getEvent(eventId);
-//	}
-//	//all events
-//	@GetMapping() 
-//	public  List<EventModel> allEvents()
-//	{
-//		return eventservice.getAllEvents();
-//	}
-//	
-//	//create
-//	@PostMapping
-//	public String createEvent(@RequestBody EventModel eventmodel)
-//	{
-//		eventservice.createEvent(eventmodel);
-//		return "done sucessfully";
-//	}
-//	
-//	//update
-//	@PutMapping()
-//	public String updateEvent(@RequestBody EventModel eventmodel)
-//	{
-//		try {
-//			eventservice.Done(eventmodel);
-//		    return "updated sucessfully";
-//		} catch (EventNotExistsException e) {
-//			return e.getMessage();
-//		}
-//	}
-//	
-//	//deleted by id
-//	@DeleteMapping("{eventId}")
-//	public String deleteEvent(@PathVariable("eventId") String eventId)
-//	{
-//		eventservice.delEvent(eventId);
-//		return "deleted successfully";
-//	}
-//}
-
 	@GetMapping()
 	public ResponseEntity<List<EventModel>> allEvents() {
 		logger.info("Retrive all events");
@@ -100,12 +58,12 @@ public class EventController {
 			String status = eventservice.createEvent(eventmodel); // object comes here
 			return new ResponseEntity<>(status, HttpStatus.CREATED);
 		} catch (Exception e) {
-//			if(e.getMessage().endsWith("Exists"))
-//			{
-//				logger.error("Returning the data");
-//				EventModel event = eventservice.getEvent(eventmodel.getEventId());
-//				return new ResponseEntity<>(event, HttpStatus.OK);
-//			}
+			if(e.getMessage().endsWith("Exists"))
+			{
+				logger.error("Returning the data");
+				EventModel event = eventservice.getEvent(eventmodel.getEventId());
+				return new ResponseEntity<>(event, HttpStatus.OK);
+			}
 			logger.error("exception" + e.getMessage());
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
