@@ -26,3 +26,4 @@ public class EventModel {
 		this.eventDate = eventDate;
 	}
 }
+

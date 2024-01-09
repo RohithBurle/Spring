@@ -91,6 +91,7 @@ public class EventController {
 		{
 			logger.error("Cant delete the event" + e.getMessage());
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			
 		}
 	
 }

@@ -59,14 +59,14 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public String isEventexists(EventModel eventmodel) {
 		logger.info("recieved req from put mapping");
-		if(eventrepository.existsById(eventmodel.getEventId()))
+		if(!eventrepository.existsById(eventmodel.getEventId()))
 		{
-			eventrepository.save(eventmodel);
-			return "I updated the existing data";
-		}
-		else {
 			logger.error("raising an EventNotExists Exception");
 			throw new EventNotExistsException("the event is not present so i cant update the data");
+		}
+		else {
+			eventrepository.save(eventmodel);
+			return "I updated the existing data";
 	}}
 	
 	@Override 
@@ -77,7 +77,7 @@ public class EventServiceImpl implements EventService {
 	        return "Deleted Successfully";
 	    } else {
 	    	logger.error("raising an Exception");
-	        throw new EventNotExistsException("The event with ID " + eventId + " is not present");
+	        throw new EventNotExistsException("The event with ID is not present");
 	    }
 	}
 
