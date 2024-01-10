@@ -7,14 +7,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import com.example.event.exceptions.EventNotExistsException;
@@ -27,7 +27,6 @@ public class EventServiceImplTest {
 	@Mock
 	private EventRepository eventrepository;
 	
-	@InjectMocks
 	private EventService eventservice;
 	AutoCloseable autocloseable;
 	EventModel eventmodel;
@@ -71,7 +70,7 @@ public class EventServiceImplTest {
 	
 	@Test
 	void testdelEvent() {
-	    EventModel delDummy = new EventModel();
+	    EventModel delDummy = new EventModel("1000","Donation","Delhi","12-55-66");
 	    delDummy.setEventId("10000");
 	    // when id is present
 	    when(eventrepository.existsById(delDummy.getEventId())).thenReturn(true);
@@ -87,7 +86,7 @@ public class EventServiceImplTest {
 
 	@Test
 	void testgetEvent() {
-		EventModel getDummy = new EventModel();
+		EventModel getDummy = new EventModel("1000","Donation","Delhi","12-55-66");
 		getDummy.setEventId("100");
 		when(eventrepository.existsById(getDummy.getEventId())).thenReturn(true);
 		when(eventrepository.findById(getDummy.getEventId())).thenReturn(Optional.of(getDummy));
@@ -98,15 +97,21 @@ public class EventServiceImplTest {
 			    () -> eventservice.getEvent(getDummy.getEventId()));
 		 assertEquals("event id is no " + getDummy.getEventId() + " not present", getexception.getMessage());
 	}
-	
 	@Test
-	void testgetAllEvents() {
-		EventModel getallDummy = new EventModel();
-		when(eventrepository.findAll()).thenReturn()
-		assertEquals(null, null);
-		
-	}
-	
-}
+	public void testGetAllEvents() {
 
+	    EventModel event1 = new EventModel("1", "Event 1", "Location 1", "Date 1");
+	    EventModel event2 = new EventModel("2", "Event 2", "Location 2", "Date 2");
+	    List<EventModel> expectedEvents = new ArrayList<EventModel>();
+	    expectedEvents.add(event1);
+	    expectedEvents.add(event2);
+	    
+	    when(eventrepository.findAll()).thenReturn(expectedEvents);
+
+	    List<EventModel> resultEvents = eventservice.getAllEvents();
+	    assertEquals(expectedEvents.size(), resultEvents.size());
+	    assertEquals(expectedEvents, resultEvents);
+	}
+
+}
 
