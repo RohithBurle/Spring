@@ -89,7 +89,7 @@ public class EventServiceImpl implements EventService {
 		}
 		else
 		{
-			throw new EventNotExistsException("event id is no " + eventId + " not present");
+			throw new EventNotExistsException("event id " + eventId + " not present");
 		}
 	}
 
@@ -99,6 +99,8 @@ public class EventServiceImpl implements EventService {
 		return eventrepository.findAll();
 	}
 }
+
+
 
 
 

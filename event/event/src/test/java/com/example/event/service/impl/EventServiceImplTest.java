@@ -1,117 +1,160 @@
 package com.example.event.service.impl;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.example.event.exceptions.EventAlreadyExistsException;
 import com.example.event.exceptions.EventNotExistsException;
+import com.example.event.exceptions.NotEmptyException;
+import com.example.event.exceptions.NotNullException;
 import com.example.event.model.EventModel;
 import com.example.event.repository.EventRepository;
-import com.example.event.service.EventService;
 
-public class EventServiceImplTest {
+class EventServiceImplTest {
 
-	@Mock
-	private EventRepository eventrepository;
-	
-	private EventService eventservice;
-	AutoCloseable autocloseable;
-	EventModel eventmodel;
-	
-	@BeforeEach
-	void setUp() {
-		autocloseable = MockitoAnnotations.openMocks(this);
-		eventservice = new EventServiceImpl(eventrepository);
-		eventmodel = new EventModel("1000","Donation","Delhi","12-55-66");
-	}
-	
-	@AfterEach
-	void tearDown() throws Exception {
-		autocloseable.close();
-	}
-	
-	@Test //create
-	void testCreateEvent() {
-		mock(EventModel.class);
-		mock(EventRepository.class);
-		
-		when(eventrepository.save(eventmodel)).thenReturn(eventmodel);
-		assertThat(eventservice.createEvent(eventmodel)).isEqualTo("Success");
-	}
-	  
-	  @Test
-	    public void testIsEventExists() { 
-	        EventModel Dummy = new EventModel();
-	        Dummy.setEventId("1234"); //change id as per case
-	        //when id is not present
-	        when(eventrepository.existsById(Dummy.getEventId())).thenReturn(false);
-	        EventNotExistsException update = assertThrows(EventNotExistsException.class,
-	                () -> eventservice.isEventexists(Dummy));
-	        assertEquals("the event is not present so i cant update the data", update.getMessage());
-	        // when id is present
-	        when(eventrepository.existsById(Dummy.getEventId())).thenReturn(true);
-	        String resultExisting = eventservice.isEventexists(Dummy);
-	        assertEquals("I updated the existing data", resultExisting);
-	        verify(eventrepository).save(Dummy);
-	    }
-	
-	@Test
-	void testdelEvent() {
-	    EventModel delDummy = new EventModel("1000","Donation","Delhi","12-55-66");
-	    delDummy.setEventId("10000");
-	    // when id is present
-	    when(eventrepository.existsById(delDummy.getEventId())).thenReturn(true);
-	    String result = eventservice.delEvent(delDummy.getEventId());
-	    assertEquals("Deleted Successfully", result);
-	    verify(eventrepository).deleteById(delDummy.getEventId());
-	    // when id is not present
-	    when(eventrepository.existsById(delDummy.getEventId())).thenReturn(false);
-	    EventNotExistsException exception = assertThrows(EventNotExistsException.class,
-	            () -> eventservice.delEvent(delDummy.getEventId()));
+    @Mock
+    private EventRepository eventRepository;
+
+    @InjectMocks
+    private EventServiceImpl eventService;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    void testCreateEvent_Success() {
+        EventModel eventModel = new EventModel("1", "EventName", "EventDescription","12-12-24");
+
+        when(eventRepository.existsById("1")).thenReturn(false);
+        when(eventRepository.save(eventModel)).thenReturn(eventModel);
+
+        String result = eventService.createEvent(eventModel);
+
+        assertEquals("Success", result);
+        verify(eventRepository, times(1)).save(eventModel);
+    }
+
+    @Test
+    void testCreateEvent_EventAlreadyExists() {
+        EventModel existingEvent = new EventModel("1", "ExistingEvent", "ExistingDescription","12-12-24");
+
+        when(eventRepository.existsById("1")).thenReturn(true);
+
+        assertThrows(EventAlreadyExistsException.class, () -> {
+            eventService.createEvent(existingEvent);
+        });
+
+        verify(eventRepository, never()).save(existingEvent);
+    }
+
+    @Test
+    void testCreateEvent_EmptyEventId() {
+        EventModel eventModel = new EventModel("", "EventName", "EventDescription","12-12-24");
+
+        assertThrows(NotEmptyException.class, () -> {
+            eventService.createEvent(eventModel);
+        });
+
+        verify(eventRepository, never()).save(eventModel);
+    }
+
+    @Test
+    void testCreateEvent_NullEventId() {
+        EventModel eventModel = new EventModel(null, "EventName", "EventDescription","12-12-24");
+
+        assertThrows(NotNullException.class, () -> {
+            eventService.createEvent(eventModel);
+        });
+
+        verify(eventRepository, never()).save(eventModel);
+    }
+
+    @Test
+    void testIsEventExists_EventExists() {
+        EventModel existingEvent = new EventModel("1", "ExistingEvent", "ExistingDescription","12-12-24");
+
+        when(eventRepository.existsById("1")).thenReturn(true);
+
+        String result = eventService.isEventexists(existingEvent);
+
+        assertEquals("I updated the existing data", result);
+        verify(eventRepository, times(1)).save(existingEvent);
+    }
+
+    @Test
+    void testIsEventExists_EventNotExists() {
+        EventModel nonExistingEvent = new EventModel("2", "NonExistingEvent", "NonExistingDescription","12-12-24");
+
+        when(eventRepository.existsById("2")).thenReturn(false);
+
+        assertThrows(EventNotExistsException.class, () -> {
+            eventService.isEventexists(nonExistingEvent);
+        });
+
+        verify(eventRepository, never()).save(nonExistingEvent);
+    }
+
+    @Test
+    void testDelEvent_EventExists() {
+        String eventId = "1";
+
+        when(eventRepository.existsById(eventId)).thenReturn(true);
+
+        String result = eventService.delEvent(eventId);
+
+        assertEquals("Deleted Successfully", result);
+        verify(eventRepository, times(1)).deleteById(eventId);
+    }
+
+    @Test
+    void testDelEvent_EventNotExists() {
+        String nonExistingEventId = "3";
+        
+        EventNotExistsException exception = assertThrows(EventNotExistsException.class,
+	            () -> eventService.delEvent(nonExistingEventId));
 	    assertEquals("The event with ID is not present", exception.getMessage());
-	}
+    }
 
-	@Test
-	void testgetEvent() {
-		EventModel getDummy = new EventModel("1000","Donation","Delhi","12-55-66");
-		getDummy.setEventId("100");
-		when(eventrepository.existsById(getDummy.getEventId())).thenReturn(true);
-		when(eventrepository.findById(getDummy.getEventId())).thenReturn(Optional.of(getDummy));
-		EventModel result = eventservice.getEvent(getDummy.getEventId());
-		assertEquals(getDummy,result);
-		when(eventrepository.existsById(getDummy.getEventId())).thenReturn(false);
-		EventNotExistsException getexception = assertThrows(EventNotExistsException.class,
-			    () -> eventservice.getEvent(getDummy.getEventId()));
-		 assertEquals("event id is no " + getDummy.getEventId() + " not present", getexception.getMessage());
-	}
-	@Test
-	public void testGetAllEvents() {
+//correct
+    @Test
+    void testGetEvent_EventExists() {
+        String eventId = "1";
+        String nonExistingEventId = "4";
+        EventModel existingEvent = new EventModel(nonExistingEventId, "ExistingEvent", "ExistingDescription","12-12-24");
 
-	    EventModel event1 = new EventModel("1", "Event 1", "Location 1", "Date 1");
-	    EventModel event2 = new EventModel("2", "Event 2", "Location 2", "Date 2");
-	    List<EventModel> expectedEvents = new ArrayList<EventModel>();
-	    expectedEvents.add(event1);
-	    expectedEvents.add(event2);
-	    
-	    when(eventrepository.findAll()).thenReturn(expectedEvents);
+        when(eventRepository.existsById(eventId)).thenReturn(true); 
+        when(eventRepository.findById(eventId)).thenReturn(Optional.of(existingEvent));
 
-	    List<EventModel> resultEvents = eventservice.getAllEvents();
-	    assertEquals(expectedEvents.size(), resultEvents.size());
-	    assertEquals(expectedEvents, resultEvents);
-	}
+        EventModel result = eventService.getEvent(eventId);
 
+        assertEquals(existingEvent, result);
+        
+        EventNotExistsException getexception = assertThrows(EventNotExistsException.class,
+			    () -> eventService.getEvent(nonExistingEventId));
+		System.out.println(getexception.getMessage());
+    }
+
+
+    @Test
+    void testGetAllEvents() {
+        EventModel event1 = new EventModel("1", "EventName1", "EventDescription1","12-12-24");
+        EventModel event2 = new EventModel("2", "EventName2", "EventDescription2","12-12-24");
+
+        when(eventRepository.findAll()).thenReturn(Arrays.asList(event1, event2));
+
+        List<EventModel> result = eventService.getAllEvents();
+
+        assertEquals(Arrays.asList(event1, event2), result);
+    }
 }
-

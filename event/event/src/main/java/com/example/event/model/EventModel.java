@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.Getter;
 
-@Data
+
 @Entity
 public class EventModel {
 	
@@ -13,6 +13,38 @@ public class EventModel {
 	private String eventId;
 	private String eventName;
 	private String eventlocation;
+	public String getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(String eventId) {
+		this.eventId = eventId;
+	}
+
+	public String getEventName() {
+		return eventName;
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+	public String getEventlocation() {
+		return eventlocation;
+	}
+
+	public void setEventlocation(String eventlocation) {
+		this.eventlocation = eventlocation;
+	}
+
+	public String getEventDate() {
+		return eventDate;
+	}
+
+	public void setEventDate(String eventDate) {
+		this.eventDate = eventDate;
+	}
+
 	private String eventDate;
 	
 	public EventModel() {
