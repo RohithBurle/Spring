@@ -1,7 +1,7 @@
 package com.example.event.service.impl;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -17,11 +17,8 @@ import org.mockito.MockitoAnnotations;
 
 import com.example.event.exceptions.EventAlreadyExistsException;
 import com.example.event.exceptions.EventNotExistsException;
-import com.example.event.exceptions.NotEmptyException;
-import com.example.event.exceptions.NotNullException;
 import com.example.event.model.EventModel;
 import com.example.event.repository.EventRepository;
-
 
 class EventServiceImplTest {
 
