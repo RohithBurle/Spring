@@ -6,7 +6,7 @@ import com.example.event.model.EventModel;
 
 public interface EventService {
 
-	public String createEvent (EventModel eventmodel);
+	public EventModel createEvent (EventModel eventmodel);
 	public String delEvent (String eventId);
 	public List<EventModel> getAllEvents();
 	public String isEventexists(EventModel eventmodel);

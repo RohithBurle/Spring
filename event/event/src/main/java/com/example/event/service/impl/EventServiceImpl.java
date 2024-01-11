@@ -33,41 +33,51 @@ public class EventServiceImpl implements EventService {
 	}
 	
 	@Override
-	public String createEvent(EventModel eventmodel) {
-		logger.info("recieved req from post mapping");
-		if(eventmodel.getEventId() != null)
+	public List<EventModel> getAllEvents() {
+		logger.info("recieved request for Get method ");
+		return eventrepository.findAll();
+	} 
+	 
+	@Override
+	public EventModel getEvent(String eventId) {
+		logger.info("recieved request for Get method "); 
+		if(eventrepository.existsById(eventId))
 		{
-			if(eventmodel.getEventId().length() == 0) {
-				logger.error("raising NonEmptyException");
-				throw new NotEmptyException("Failure because event id is empty");
-			}
-			if(eventrepository.existsById(eventmodel.getEventId()))
-					{
-				throw new EventAlreadyExistsException("Event already Exists");
-					}
-			else {
-			eventrepository.save(eventmodel);
-			return "Success";
-		}}
-		else
+			return eventrepository.findById(eventId).get();
+		}
+		else 
 		{
-			logger.error("raising an NotNullException");
-			throw new NotNullException("Failure because event Id is null");
+			throw new EventNotExistsException("event id is no " + eventId + " not present");
 		}
 	}
 
 	@Override
+	public EventModel createEvent(EventModel eventmodel) {
+		logger.info("recieved req from post mapping");
+			if(eventrepository.existsById(eventmodel.getEventId()))
+					{ 
+				throw new EventAlreadyExistsException("Event already Exists");
+					}  
+			else {
+			return eventrepository.save(eventmodel);
+		}
+	}
+
+	@Override 
 	public String isEventexists(EventModel eventmodel) {
 		logger.info("recieved req from put mapping");
-		if(!eventrepository.existsById(eventmodel.getEventId()))
+		if(eventrepository.existsById(eventmodel.getEventId()))
 		{
-			logger.error("raising an EventNotExists Exception");
-			throw new EventNotExistsException("the event is not present so i cant update the data");
-		}
-		else {
 			eventrepository.save(eventmodel);
 			return "I updated the existing data";
-	}}
+			
+		}
+		else {
+			logger.error("raising an EventNotExists Exception");
+			throw new EventNotExistsException("the event is not present so i cant update the data");
+			 
+	}} 
+	
 	
 	@Override 
 	public String delEvent(String eventId) {
@@ -76,27 +86,9 @@ public class EventServiceImpl implements EventService {
 	        eventrepository.deleteById(eventId);
 	        return "Deleted Successfully";
 	    } else {
-	    	logger.error("raising an Exception");
+	    	logger.error("raising an Exception"); 
 	        throw new EventNotExistsException("The event with ID is not present");
 	    }
-	}
-
-	@Override
-	public EventModel getEvent(String eventId) {
-		if(eventrepository.existsById(eventId))
-		{
-			return eventrepository.findById(eventId).get();
-		}
-		else
-		{
-			throw new EventNotExistsException("event id is no " + eventId + " not present");
-		}
-	}
-
-	@Override
-	public List<EventModel> getAllEvents() {
-		logger.info("recieved request for Get method ");
-		return eventrepository.findAll();
 	}
 }
 

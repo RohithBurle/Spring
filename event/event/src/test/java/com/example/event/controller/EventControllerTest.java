@@ -1,12 +1,11 @@
 package com.example.event.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -18,154 +17,140 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.example.event.contoller.EventController;
+import com.example.event.exceptions.EventAlreadyExistsException;
+import com.example.event.exceptions.EventNotExistsException;
 import com.example.event.model.EventModel;
 import com.example.event.service.EventService;
 
+
 class EventControllerTest {
+	
+	@Mock
+	EventService eventservice;
+	
+	@InjectMocks
+	EventController eventcontroller;
+	
+	 @BeforeEach
+	    void setUp() {
+	        MockitoAnnotations.openMocks(this);
+	    }
+	 
+	//Get
+	@Test
+	public void test_allEvents() {
+		EventModel event1 = new EventModel("1", "Event 1", "Location 1", "Date 1");
+	    EventModel event2 = new EventModel("2", "Event 2", "Location 2", "Date 2");
+	    
+	    List<EventModel> allevents = new ArrayList<EventModel>();
+	    allevents.add(event1);
+	    allevents.add(event2);
+	    
+	    when(eventservice.getAllEvents()).thenReturn(allevents);
+	    ResponseEntity<List<EventModel>> result = eventcontroller.allEvents();
+	    
+	    assertEquals(result.getBody().size(),allevents.size());
+	    assertEquals(HttpStatus.OK,result.getStatusCode());
+	}
+    
+	//Get By ID
+	@Test
+	public void test_specificEvent_ok() {
+		EventModel Event = new EventModel("3","Event3","Location3","date 3");
+		String eventId="3";
+		
+		when(eventservice.getEvent(eventId)).thenReturn(Event);
+		ResponseEntity<?> specificEvent = eventcontroller.specificEvent(eventId);
+		
+		assertEquals(HttpStatus.OK,specificEvent.getStatusCode());
+		assertEquals(Event,specificEvent.getBody());
+	}
+	
+	@Test
+	public void test_specificEvent_Exception() {
+		EventModel Event = new EventModel("3","Event3","Location3","date 3");
+		String eventId = "invalidEventId";
 
-    @Mock
-    private EventService eventService;
+        when(eventservice.getEvent(eventId)).thenThrow(new EventNotExistsException("Event not found"));
 
-    @InjectMocks
-    private EventController eventController;
+        ResponseEntity<?> specificEvent = eventcontroller.specificEvent(eventId);
+        assertEquals(HttpStatus.BAD_REQUEST, specificEvent.getStatusCode());
+        assertEquals("Event not found", specificEvent.getBody());
+    }
+	
+	//POST
+	@Test
+    public void test_createEvent_Success() {
+        EventModel event = new EventModel("1", "Event1", "Location1", "date 1");
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
+        when(eventservice.createEvent(event)).thenReturn(event);
+
+        ResponseEntity<?> responseEntity = eventcontroller.createEvent(event);
+
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        assertEquals(event, responseEntity.getBody());
     }
 
     @Test
-    void testAllEvents() {
-        // Arrange
-        List<EventModel> mockEvents = Arrays.asList(new EventModel(), new EventModel());
-        when(eventService.getAllEvents()).thenReturn(mockEvents);
+    public void test_createEvent_Exception() {
+        EventModel event = new EventModel("1", "Event1", "Location1", "date 1");
 
-        // Act
-        ResponseEntity<List<EventModel>> response = eventController.allEvents();
+        when(eventservice.createEvent(event)).thenThrow(new EventAlreadyExistsException("Event Already Exists"));
+        
+        ResponseEntity<?> responseEntity = eventcontroller.createEvent(event);
+        
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        assertEquals("Event Already Exists", responseEntity.getBody());
+    }
 
-        // Assert
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(mockEvents, response.getBody());
-        verify(eventService, times(1)).getAllEvents();
+    // PUT
+    @Test
+    public void test_updateEventif_Success() {
+        EventModel event = new EventModel("1", "Event1", "Location1", "date 1");
+
+        when(eventservice.isEventexists(event)).thenReturn("Event updated successfully");
+        ResponseEntity<String> responseEntity = eventcontroller.updateEventif(event);
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals("Event updated successfully", responseEntity.getBody());
     }
 
     @Test
-    void testSpecificEvent() {
-        // Arrange
-        String eventId = "123";
-        EventModel mockEvent = new EventModel();
-        when(eventService.getEvent(eventId)).thenReturn(mockEvent);
+    public void test_updateEventif_Exception() {
+        EventModel event = new EventModel("1", "Event1", "Location1", "date 1");
 
-        // Act
-        ResponseEntity<?> response = eventController.specificEvent(eventId);
+        when(eventservice.isEventexists(event)).thenThrow(new EventNotExistsException("Event not found"));
 
-        // Assert
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(mockEvent, response.getBody());
-        verify(eventService, times(1)).getEvent(eventId);
+        ResponseEntity<String> responseEntity = eventcontroller.updateEventif(event);
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+        assertEquals("Event not found", responseEntity.getBody());
     }
+    
+    //DELETE
+    @Test
+    public void test_delEvent_Success() {
+        String eventId = "1";
+
+        when(eventservice.delEvent(eventId)).thenReturn("Deleted Happily");
+        
+
+        ResponseEntity<String> responseEntity = eventcontroller.delEvent(eventId);
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals("Deleted Happily", responseEntity.getBody());
+    } 
 
     @Test
-    void testSpecificEventWithException() {
-        // Arrange
-        String eventId = "123";
-        when(eventService.getEvent(eventId)).thenThrow(new RuntimeException("Test Exception"));
+    public void test_delEvent_Exception() {
+        String eventId = "invalidEventId";
+        
+        when(eventservice.delEvent(eventId)).thenThrow(new EventNotExistsException("Cant delete the event"));
+        ResponseEntity<String> responseEntity = eventcontroller.delEvent(eventId);
 
-        // Act
-        ResponseEntity<?> response = eventController.specificEvent(eventId);
-
-        // Assert
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals("Test Exception", response.getBody());
-        verify(eventService, times(1)).getEvent(eventId);
-    }
-
-    @Test
-    void testCreateEvent() {
-        // Arrange
-        EventModel mockEvent = new EventModel();
-        when(eventService.createEvent(mockEvent)).thenReturn("Created Successfully");
-
-        // Act
-        ResponseEntity<?> response = eventController.createEvent(mockEvent);
-
-        // Assert
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals("Created Successfully", response.getBody());
-        verify(eventService, times(1)).createEvent(mockEvent);
-    }
-
-    @Test
-    void testCreateEventWithException() {
-        // Arrange
-        EventModel mockEvent = new EventModel();
-        when(eventService.createEvent(mockEvent)).thenThrow(new RuntimeException("Event Already Exists"));
-
-        // Act
-        ResponseEntity<?> response = eventController.createEvent(mockEvent);
-
-        // Assert
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals("Event Already Exists", response.getBody());
-        verify(eventService, times(1)).getEvent(mockEvent.getEventId());
-    }
-
-    @Test
-    void testUpdateEventIf() {
-        // Arrange
-        EventModel mockEvent = new EventModel();
-        when(eventService.isEventexists(mockEvent)).thenReturn("Updated Successfully");
-
-        // Act
-        ResponseEntity<String> response = eventController.updateEventif(mockEvent);
-
-        // Assert
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Updated Successfully", response.getBody());
-        verify(eventService, times(1)).isEventexists(mockEvent);
-    }
-
-    @Test
-    void testUpdateEventIfWithException() {
-        // Arrange
-        EventModel mockEvent = new EventModel();
-        when(eventService.isEventexists(mockEvent)).thenThrow(new RuntimeException("Event Not Found"));
-
-        // Act
-        ResponseEntity<String> response = eventController.updateEventif(mockEvent);
-
-        // Assert
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("Event Not Found", response.getBody());
-        verify(eventService, times(1)).isEventexists(mockEvent);
-    }
-
-    @Test
-    void testDelEvent() {
-        // Arrange
-        String eventId = "123";
-
-        // Act
-        ResponseEntity<String> response = eventController.delEvent(eventId);
-
-        // Assert
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Deleted Happily", response.getBody());
-        verify(eventService, times(1)).delEvent(eventId);
-    }
-
-    @Test
-    void testDelEventWithException() {
-        // Arrange
-        String eventId = "123";
-        doThrow(new RuntimeException("Event Deletion Failed")).when(eventService).delEvent(eventId);
-
-        // Act
-        ResponseEntity<String> response = eventController.delEvent(eventId);
-
-        // Assert
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals("Event Deletion Failed", response.getBody());
-        verify(eventService, times(1)).delEvent(eventId);
-    }
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        assertEquals("Cant delete the event", responseEntity.getBody());
+    } 
 }
+
+

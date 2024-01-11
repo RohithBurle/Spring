@@ -26,7 +26,7 @@ public class EventController {
 
 	EventService eventservice;
 
-	public EventController(EventService eventservice) {
+	public EventController(EventService eventservice) { 
 		this.eventservice = eventservice;
 	}
 
@@ -37,6 +37,7 @@ public class EventController {
 		return new ResponseEntity<>(allEvents, HttpStatus.OK);
 	}
 
+	
 	@GetMapping("{eventId}") // event id in this line is given by user
 	public ResponseEntity<?> specificEvent(@PathVariable("eventId") String eventId) // to match above and below																						// eventID
 	{
@@ -44,26 +45,26 @@ public class EventController {
 		logger.info("specific event");
 		EventModel event = eventservice.getEvent(eventId);
 		return new ResponseEntity<>(event, HttpStatus.OK);
-		} catch(Exception e)
+		} catch(Exception e) 
 		{
 			logger.error("exception" + e.getMessage());
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-	}
+	} 
 
 	@PostMapping()
 	public ResponseEntity<?> createEvent(@RequestBody EventModel eventmodel) {
 		try {
 			logger.info("Posting");
-			String status = eventservice.createEvent(eventmodel); // object comes here
+			EventModel status = eventservice.createEvent(eventmodel); // object comes here
 			return new ResponseEntity<>(status, HttpStatus.CREATED);
 		} catch (Exception e) {
-			if(e.getMessage().endsWith("Exists"))
-			{
-				logger.error("Returning the data that is already present");
-				EventModel event = eventservice.getEvent(eventmodel.getEventId());
-				return new ResponseEntity<>(event, HttpStatus.OK);
-			}
+//			if(e.getMessage().endsWith("Exists"))
+//			{
+//				logger.error("Returning the data that is already present");
+//				EventModel event = eventservice.getEvent(eventmodel.getEventId());
+//				return new ResponseEntity<>(event, HttpStatus.OK);
+//			}
 			logger.error("exception" + e.getMessage());
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
@@ -79,7 +80,7 @@ public class EventController {
 			logger.error("EventNotExistsException: " + e.getMessage());
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
-	}
+	} 
 
 	@DeleteMapping("{eventId}")
 	public ResponseEntity<String> delEvent(@PathVariable("eventId") String eventId) {
@@ -90,9 +91,7 @@ public class EventController {
 		} catch(Exception e)
 		{
 			logger.error("Cant delete the event" + e.getMessage());
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
-			
+			return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);	
 		}
-	
 }
 }
