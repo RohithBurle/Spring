@@ -28,29 +28,28 @@ public class EventController {
 
 	public EventController(EventService eventservice) { 
 		this.eventservice = eventservice;
-	}
+	}  
 
 	@GetMapping()
 	public ResponseEntity<List<EventModel>> allEvents() {
 		logger.info("Retrive all events");
 		List<EventModel> allEvents = eventservice.getAllEvents();
 		return new ResponseEntity<>(allEvents, HttpStatus.OK);
-	}
-
+	} 
 	
 	@GetMapping("{eventId}") // event id in this line is given by user
 	public ResponseEntity<?> specificEvent(@PathVariable("eventId") String eventId) // to match above and below																						// eventID
 	{
 		try {
-		logger.info("specific event");
+		logger.info("specific event");  
 		EventModel event = eventservice.getEvent(eventId);
 		return new ResponseEntity<>(event, HttpStatus.OK);
 		} catch(Exception e) 
 		{
 			logger.error("exception" + e.getMessage());
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+ 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-	} 
+	}  
 
 	@PostMapping()
 	public ResponseEntity<?> createEvent(@RequestBody EventModel eventmodel) {
@@ -60,7 +59,7 @@ public class EventController {
 			return new ResponseEntity<>(status, HttpStatus.CREATED);
 		} catch (Exception e) {
 //			if(e.getMessage().endsWith("Exists"))
-//			{
+//		 	{
 //				logger.error("Returning the data that is already present");
 //				EventModel event = eventservice.getEvent(eventmodel.getEventId());
 //				return new ResponseEntity<>(event, HttpStatus.OK);

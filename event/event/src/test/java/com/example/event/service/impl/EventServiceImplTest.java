@@ -11,15 +11,18 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.event.exceptions.EventAlreadyExistsException;
 import com.example.event.exceptions.EventNotExistsException;
 import com.example.event.model.EventModel;
 import com.example.event.repository.EventRepository;
 
+//@ExtendWith(MockitoExtension.class)
 class EventServiceImplTest {
 
     @Mock
@@ -33,7 +36,7 @@ class EventServiceImplTest {
         MockitoAnnotations.openMocks(this);
     }
       
-    @Test 
+    @Test  
     void testGetAllEvents() {
 
 	    EventModel event1 = new EventModel("1", "Event 1", "Location 1", "Date 1");
@@ -58,7 +61,7 @@ class EventServiceImplTest {
         EventModel existingEvent = new EventModel("1", "ExistingEvent", "ExistingDescription","12-12-24");
         when(eventRepository.existsById(eventId)).thenReturn(true); 
         when(eventRepository.findById(eventId)).thenReturn(Optional.of(existingEvent)); //Dummy Mocking Check
-        EventModel result = eventservice.getEvent(eventId); //service layer checking
+        EventModel result = eventservice.getEvent(eventId); //check with method name in service
         assertEquals(existingEvent, result);
         
         EventNotExistsException getexception = assertThrows(EventNotExistsException.class, 
@@ -66,7 +69,7 @@ class EventServiceImplTest {
         //System.out.println(getexception.getMessage());
         assertEquals("event id is no " + nonExistingEventId + " not present", getexception.getMessage());
 	}
- 
+  
     
     @Test
     void testCreateEvent() {
@@ -100,10 +103,10 @@ class EventServiceImplTest {
 //    }
 
     @Test
-    void testisEventexits() {
+    void testisEventexits() { 
     	EventModel existingEvent = new EventModel("1", "ExistingEvent", "ExistingDescription","12-12-24");
-    	when(eventRepository.existsById("1")).thenReturn(true);
-    	
+    	when(eventRepository.existsById(existingEvent.getEventId())).thenReturn(true);
+     	
     	String result = eventservice.isEventexists(existingEvent); //checking from service
     	
     	assertEquals("I updated the existing data", result);

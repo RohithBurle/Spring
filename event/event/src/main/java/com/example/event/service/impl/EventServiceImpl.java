@@ -27,7 +27,7 @@ public class EventServiceImpl implements EventService {
 	
 	EventRepository eventrepository;
 
-	
+	 
 	public EventServiceImpl(EventRepository eventrepository) {
 		this.eventrepository = eventrepository;
 	}
@@ -37,7 +37,7 @@ public class EventServiceImpl implements EventService {
 		logger.info("recieved request for Get method ");
 		return eventrepository.findAll();
 	} 
-	 
+	  
 	@Override
 	public EventModel getEvent(String eventId) {
 		logger.info("recieved request for Get method "); 
@@ -48,9 +48,9 @@ public class EventServiceImpl implements EventService {
 		else 
 		{
 			throw new EventNotExistsException("event id is no " + eventId + " not present");
-		}
+		} 
 	}
-
+ 
 	@Override
 	public EventModel createEvent(EventModel eventmodel) {
 		logger.info("recieved req from post mapping");
@@ -62,7 +62,31 @@ public class EventServiceImpl implements EventService {
 			return eventrepository.save(eventmodel);
 		}
 	}
-
+	
+//	@Override
+//	public EventModel createEvent(EventModel eventmodel) {
+//		logger.info("recieved req from post mapping");
+//		if(eventmodel.getEventId() != null)
+//		{
+//			if(eventmodel.getEventId().length() == 0) {
+//				logger.error("raising NonEmptyException");
+//				throw new NotEmptyException("Failure because event id is empty");
+//			}
+//			if(eventrepository.existsById(eventmodel.getEventId()))
+//					{
+//				throw new EventAlreadyExistsException("Event already Exists");
+//					}
+//			else {
+//			
+//			return eventrepository.save(eventmodel);
+//		}}
+//		else
+//		{
+//			logger.error("raising an NotNullException");
+//			throw new NotNullException("Failure because event Id is null");
+//		}
+//	}
+	
 	@Override 
 	public String isEventexists(EventModel eventmodel) {
 		logger.info("recieved req from put mapping");
@@ -75,7 +99,7 @@ public class EventServiceImpl implements EventService {
 		else {
 			logger.error("raising an EventNotExists Exception");
 			throw new EventNotExistsException("the event is not present so i cant update the data");
-			 
+		 	 
 	}} 
 	
 	
