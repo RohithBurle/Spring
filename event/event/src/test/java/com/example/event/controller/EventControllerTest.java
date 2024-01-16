@@ -26,7 +26,7 @@ import com.example.event.service.EventService;
 
 class EventControllerTest { 
 	
-	@Mock
+	@Mock 
 	EventService eventservice;
 	
 	@InjectMocks
@@ -36,7 +36,7 @@ class EventControllerTest {
 	    void setUp() {
 	        MockitoAnnotations.openMocks(this);
 	    }
-	 
+	  
 	//Get
 	@Test
 	public void test_allEvents() {
@@ -51,7 +51,8 @@ class EventControllerTest {
 	    ResponseEntity<List<EventModel>> result = eventcontroller.allEvents();
 	    assertEquals(result.getBody().size(),allevents.size());
 	    assertEquals(HttpStatus.OK,result.getStatusCode());
-	}
+	} 
+	
 	//Get By ID
 	@Test
 	public void test_specificEvent_ok() {
@@ -67,25 +68,19 @@ class EventControllerTest {
 	 
 	@Test
 	public void test_specificEvent_Exception() {
-		//EventModel Event = new EventModel("3","Event3","Location3","date 3");
 		String eventId = "invalidEventId";
-
         when(eventservice.getEvent(Mockito.anyString())).thenThrow(new EventNotExistsException("Event not found"));
-
         ResponseEntity<?> exception = eventcontroller.specificEvent(eventId);
         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
-//        assertEquals("Event not found", exception.getBody());
+//      assertEquals("Event not found", exception.getBody());
     }
 	
 	//POST
 	@Test
     public void test_createEvent_Success() {
         EventModel event = new EventModel("1", "Event1", "Location1", "date 1");
-
         when(eventservice.createEvent(event)).thenReturn(event);
-
         ResponseEntity<?> responseEntity = eventcontroller.createEvent(event);
-
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals(event, responseEntity.getBody());
     }
@@ -113,7 +108,7 @@ class EventControllerTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 //        assertEquals("Event updated successfully", responseEntity.getBody());
     } 
- 
+  
     @Test
     public void test_updateEventif_Exception() {
         EventModel event = new EventModel("1", "Event1", "Location1", "date 1");

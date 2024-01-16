@@ -20,15 +20,15 @@ import com.example.event.service.EventService;
 
 @RestController
 @RequestMapping("/api")
-public class EventController {
-
+public class EventController { 
+ 
 	private Logger logger = LoggerFactory.getLogger(EventController.class);
 
 	EventService eventservice;
 
 	public EventController(EventService eventservice) { 
 		this.eventservice = eventservice; 
-	}  
+	}
 
 	@GetMapping()
 	public ResponseEntity<List<EventModel>> allEvents() {
@@ -67,8 +67,8 @@ public class EventController {
 			logger.error("exception" + e.getMessage());
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-	}
-
+	} 
+  
 	@PutMapping()
 	public ResponseEntity<String> updateEventif(@RequestBody EventModel eventmodel) {
 		try {

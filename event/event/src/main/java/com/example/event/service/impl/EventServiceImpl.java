@@ -36,8 +36,8 @@ public class EventServiceImpl implements EventService {
 	public List<EventModel> getAllEvents() {
 		logger.info("recieved request for Get method ");
 		return eventrepository.findAll();
-	} 
-	  
+	}  
+	   
 	@Override
 	public EventModel getEvent(String eventId) {
 		logger.info("recieved request for Get method "); 
@@ -49,8 +49,8 @@ public class EventServiceImpl implements EventService {
 		{
 			throw new EventNotExistsException("event id is no " + eventId + " not present");
 		} 
-	}
- 
+	}   
+  
 	@Override
 	public EventModel createEvent(EventModel eventmodel) {
 		logger.info("recieved req from post mapping");
@@ -117,7 +117,7 @@ public class EventServiceImpl implements EventService {
 }
 
 
-
+ 
 
 
 
