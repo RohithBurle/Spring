@@ -112,7 +112,7 @@ class EventControllerTest {
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 //        assertEquals("Event updated successfully", responseEntity.getBody());
-    }
+    } 
  
     @Test
     public void test_updateEventif_Exception() {

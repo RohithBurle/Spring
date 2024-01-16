@@ -54,23 +54,21 @@ class EventServiceImplTest {
 	}
     
     @Test
-    void testGetEvent(){
+    void testGetEvent_Success(){
         String eventId = "1";
-        String nonExistingEventId = "4";
-        
         EventModel existingEvent = new EventModel("1", "ExistingEvent", "ExistingDescription","12-12-24");
         when(eventRepository.existsById(eventId)).thenReturn(true); 
         when(eventRepository.findById(eventId)).thenReturn(Optional.of(existingEvent)); //Dummy Mocking Check
         EventModel result = eventservice.getEvent(eventId); //check with method name in service
         assertEquals(existingEvent, result);
         
-        EventNotExistsException getexception = assertThrows(EventNotExistsException.class, 
+        String nonExistingEventId = "4";
+    	EventNotExistsException getexception = assertThrows(EventNotExistsException.class, 
 			    () -> eventservice.getEvent(nonExistingEventId));
         //System.out.println(getexception.getMessage());
         assertEquals("event id is no " + nonExistingEventId + " not present", getexception.getMessage());
 	}
-  
-    
+   
     @Test
     void testCreateEvent() {
         EventModel Dummy = new EventModel("1", "EventName", "EventDescription","12-12-24");
@@ -85,7 +83,7 @@ class EventServiceImplTest {
 	            () -> eventservice.createEvent(existingEvent));
         assertEquals("Event already Exists", exception.getMessage());
     } 
-
+ 
 //    @Test
 //    void testCreateEvent_EmptyEventId() {
 //        EventModel emptyevent = new EventModel("", "EventName", "EventDescription","12-12-24");

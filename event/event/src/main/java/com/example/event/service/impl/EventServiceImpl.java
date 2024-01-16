@@ -26,7 +26,7 @@ public class EventServiceImpl implements EventService {
 	private Logger logger = LoggerFactory.getLogger(EventController.class);
 	
 	EventRepository eventrepository;
-
+ 
 	 
 	public EventServiceImpl(EventRepository eventrepository) {
 		this.eventrepository = eventrepository;

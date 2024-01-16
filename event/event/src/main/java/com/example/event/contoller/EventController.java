@@ -27,7 +27,7 @@ public class EventController {
 	EventService eventservice;
 
 	public EventController(EventService eventservice) { 
-		this.eventservice = eventservice;
+		this.eventservice = eventservice; 
 	}  
 
 	@GetMapping()
