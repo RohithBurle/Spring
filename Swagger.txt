@@ -1,0 +1,96 @@
+==== Final =====
+swagger: "2.0"
+info:
+  description: "This is a sample server Events API."
+  version: "1.0.0"
+  title: "Events API"
+  contact:
+    email: "rohith_burle@thbs.com"
+host: "localhost:1234"
+basePath: "/api"
+schemes:
+  - "http"
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /:
+    get:
+      summary: "Get all events"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/EventModel"
+    post:
+      summary: "Create a new event"
+      parameters:
+        - in: "body"
+          name: "eventmodel"
+          description: "EventModel object that needs to be created"
+          required: true
+          schema:
+            $ref: "#/definitions/EventModel"
+      responses:
+        201:
+          description: "Event created successfully"
+        400:
+          description: "Bad request or validation error"
+    put:
+      summary: "Update an existing event if it exists"
+      parameters:
+        - in: "body"
+          name: "eventmodel"
+          description: "EventModel object that needs to be updated"
+          required: true
+          schema:
+            $ref: "#/definitions/EventModel"
+      responses:
+        200:
+          description: "Event updated successfully"
+        404:
+          description: "Event not found"
+
+  /{eventId}:
+    get:
+      summary: "Get a specific event by ID"
+      parameters:
+        - name: "eventId"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/EventModel"
+        404:
+          description: "Event not found"
+    delete:
+      summary: "Delete an event by ID"
+      parameters:
+        - name: "eventId"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Event deleted successfully"
+        404:
+          description: "Event not found"
+
+definitions:
+  EventModel:
+    type: "object"
+    properties:
+      eventId:
+        type: "string"
+      eventName:
+        type: "string"
+      eventlocation:
+        type: "string"
+      eventDate:
+        type: "string"

@@ -1,6 +1,9 @@
 package com.example.event.service.impl;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -9,13 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hamcrest.Matcher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.event.exceptions.EventAlreadyExistsException;
 import com.example.event.exceptions.EventNotExistsException;
@@ -41,7 +43,7 @@ class EventServiceImplTest {
 
 	    EventModel event1 = new EventModel("1", "Event 1", "Location 1", "Date 1");
 	    EventModel event2 = new EventModel("2", "Event 2", "Location 2", "Date 2");
-	    
+	     
 	    List<EventModel> expectedEvents = new ArrayList<EventModel>();
 	    expectedEvents.add(event1);
 	    expectedEvents.add(event2);
@@ -64,15 +66,14 @@ class EventServiceImplTest {
 	}
    
     @Test
-    void testGetEvent_Exception() {
+    void testGetEvent_Exception() { 
     	String nonExistingEventId = "4";
-//        EventNotExistsException exception = assertThrows(EventNotExistsException.class, 
-//  			    () -> eventservice.getEvent(nonExistingEventId));
-    	EventModel haha = eventservice.getEvent(nonExistingEventId);
-        assertEquals("event id is no " + nonExistingEventId + " not present", haha);
-    }
-     
-    @Test
+        EventNotExistsException exception = assertThrows(EventNotExistsException.class, 
+     	    () -> eventservice.getEvent(nonExistingEventId));   
+        assertEquals("event id is no " + nonExistingEventId + " not present",exception.getMessage());
+    } 
+
+	@Test
     void testCreateEvent_Success() {
         EventModel Dummy = new EventModel("1", "EventName", "EventDescription","12-12-24");
         when(eventRepository.save(Dummy)).thenReturn(Dummy); //Dummy check and return Dummy

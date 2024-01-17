@@ -44,13 +44,13 @@ public class EventServiceImpl implements EventService {
 		if(eventrepository.existsById(eventId))
 		{
 			return eventrepository.findById(eventId).get();
-		}
-		else 
+		} 
+		else  
 		{
 			throw new EventNotExistsException("event id is no " + eventId + " not present");
-		} 
+		}  
 	}   
-  
+   
 	@Override
 	public EventModel createEvent(EventModel eventmodel) {
 		logger.info("recieved req from post mapping");
@@ -62,7 +62,7 @@ public class EventServiceImpl implements EventService {
 			return eventrepository.save(eventmodel);
 		}
 	}
-	
+	 
 //	@Override
 //	public EventModel createEvent(EventModel eventmodel) {
 //		logger.info("recieved req from post mapping");

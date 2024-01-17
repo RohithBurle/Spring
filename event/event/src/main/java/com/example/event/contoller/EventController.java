@@ -24,7 +24,7 @@ public class EventController {
  
 	private Logger logger = LoggerFactory.getLogger(EventController.class);
 
-	EventService eventservice;
+	EventService eventservice; 
 
 	public EventController(EventService eventservice) { 
 		this.eventservice = eventservice; 
@@ -47,6 +47,7 @@ public class EventController {
 		} catch(Exception e) 
 		{
 			logger.error("exception" + e.getMessage());
+			//return ResponseEntity.badRequest().body(e.getMessage());
  			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}  
